@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calm & Celebrate</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #87CEEB; /* Sky blue full background */
+      text-align: center;
+      overflow-x: hidden;
+      color: #ffffff; /* White text for visibility */
+    }
+    .container {
+      padding: 20px;
+    }
+    h1 {
+      color: #ffffff;
+      font-size: 2.5rem;
+      margin: 20px 0;
+    }
+    p {
+      font-size: 1rem;
+      margin: 10px 0;
+      line-height: 1.5;
+      padding: 0 10px;
+    }
+    .heart {
+      color: #ff4500;
+      font-size: 4rem;
+      animation: heartbeat 1s infinite;
+    }
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ffffff;
+      color: #007ACC; /* Sky blue text */
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #ff4500;
+      color: #ffffff;
+    }
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .video-link {
+      margin-top: 20px;
+    }
+    .video-link a {
+      text-decoration: none;
+      color: #ffdf00; /* Gold for contrast */
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    .video-link a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+      .heart {
+        font-size: 3rem;
+      }
+      button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+      .video-link a {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      p {
+        font-size: 0.8rem;
+      }
+      .heart {
+        font-size: 2.5rem;
+      }
+      button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+      .video-link a {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Merry Christmas 🎄</h1>
+    <p>I'm sorry if I upset you. You mean the world to me. Let's celebrate this Christmas together with love! ❤️</p>
+    <div class="heart">❤️</div>
+    <button onclick="makeHappy()">Click to Feel Loved</button>
+    <div class="video-link">
+      <p>🎥 Watch this video for us:</p>
+      <a href="https://youtu.be/prtE0-1mTeQ?si=xTOch4SPaO6Xii7r" target="_blank">Click here to watch the video 🎶</a>
+    </div>
+  </div>
+  <canvas class="confetti"></canvas>
+  <script>
+    // Confetti animation
+    const canvas = document.querySelector(".confetti");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const confettiPieces = Array.from({ length: 200 }).map(() => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 6,
+      d: Math.random() * 10,
+      color: `hsl(${Math.random() * 360}, 100%, 75%)`,
+    }));
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiPieces.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      });
+    }
+
+    function updateConfetti() {
+      confettiPieces.forEach(p => {
+        p.y += p.d;
+        if (p.y > canvas.height) {
+          p.y = -10;
+          p.x = Math.random() * canvas.width;
+        }
+      });
+    }
+
+    function animateConfetti() {
+      drawConfetti();
+      updateConfetti();
+      requestAnimationFrame(animateConfetti);
+    }
+    animateConfetti();
+
+    // Make her smile function
+    function makeHappy() {
+      alert("You are my sunshine, and I can't celebrate Christmas without you smiling! 💖");
+    }
+  </script>
+</body>
+</html>
